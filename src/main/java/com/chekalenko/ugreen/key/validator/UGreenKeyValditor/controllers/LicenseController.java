@@ -20,11 +20,7 @@ public class LicenseController {
     @PostMapping("/validate")
     public ResponseEntity<String> validateLicense(@RequestBody LicenseRequest licenseRequest) {
         boolean isValid = licenseValidationService.validateLicenseKey(licenseRequest.getKey());
-        if (isValid) {
-            return ResponseEntity.ok("License key is valid.");
-        } else {
-            return ResponseEntity.status(400).body("Invalid license key.");
-        }
+        return ResponseEntity.ok(isValid ? "License key is valid." : "Invalid license key.");
     }
 
     @PostMapping("/add")
