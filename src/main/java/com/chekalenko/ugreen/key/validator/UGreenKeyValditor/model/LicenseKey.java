@@ -1,7 +1,13 @@
 package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+
+@Setter
+@Getter
 @Entity
 @Table(name = "license_keys")
 public class LicenseKey {
@@ -15,27 +21,9 @@ public class LicenseKey {
     @Column(nullable = false)
     private boolean active;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(nullable = false)
+    private boolean isActivated;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLicenseKey() {
-        return licenseKey;
-    }
-
-    public void setLicenseKey(String licenseKey) {
-        this.licenseKey = licenseKey;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+    @Column(nullable = false)
+    private LocalDate expDate;
 }
