@@ -1,6 +1,8 @@
 package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.controllers;
 
 
+import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.common.LicenseKeyAddingResponse;
+import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.common.SuccessResponse;
 import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.model.LicenseKey;
 import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.service.LicenseValidationService;
 import lombok.AllArgsConstructor;
@@ -23,9 +25,8 @@ public class LicenseController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addLicenseKey(@RequestBody LicenseKey license) {
-        licenseValidationService.addLicenseKey(license);
-        return ResponseEntity.ok("License key added successfully.");
+    public ResponseEntity<SuccessResponse<LicenseKeyAddingResponse>> addLicenseKey(@RequestBody LicenseRequest license) {
+        return ResponseEntity.ok(new SuccessResponse<>(licenseValidationService.addLicenseKey(license)));
     }
 
     @PostMapping("/clearDB")
