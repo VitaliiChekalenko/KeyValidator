@@ -2,19 +2,40 @@ package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.service;
 
 import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.model.LicenseKey;
 import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.repos.LicenseKeyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.time.LocalDate;
 
 @Service
+@AllArgsConstructor
 public class LicenseValidationService {
 
-    @Autowired
-    private LicenseKeyRepository licenseRepository;
+    private final LicenseKeyRepository licenseRepository;
 
-    public boolean validateLicenseKey(String key) {
-        Optional<LicenseKey> byLicenseKey = licenseRepository.findByLicenseKey(key);
-        return !byLicenseKey.isEmpty();
+    public String validateLicenseKey(String key) {
+        return licenseRepository.findByLicenseKey(key).isPresent() ?
+                "License key is valid." : "Invalid license key.";
+    }
+
+    public String clearAllLicenses() {
+        try {
+            licenseRepository.deleteAllEntries();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return "DB is cleared";
+    }
+
+    public void addLicenseKey(LicenseKey license) {
+        if (licenseRepository.findByLicenseKey(license.getLicenseKey()).isPresent()) {
+            throw new RuntimeException("Key already exist");
+        }
+
+        license.setLicenseKey(license.getLicenseKey());
+        license.setActivated(false);
+        license.setActive(true);
+        license.setExpDate(LocalDate.now().plusDays(2));
+        licenseRepository.save(license);
     }
 }
