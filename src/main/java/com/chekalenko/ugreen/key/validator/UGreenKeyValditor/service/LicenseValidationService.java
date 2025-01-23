@@ -20,7 +20,7 @@ public class LicenseValidationService {
 
     public String clearAllLicenses() {
         try {
-            licenseRepository.removeAllLicenseKey();
+            licenseRepository.deleteAllEntries();
         } catch (Exception e) {
             return e.getMessage();
         }
