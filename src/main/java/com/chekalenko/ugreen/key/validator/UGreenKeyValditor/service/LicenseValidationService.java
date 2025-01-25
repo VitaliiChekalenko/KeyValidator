@@ -1,5 +1,7 @@
 package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.service;
 
+import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.common.LicenseKeyAddingResponse;
+import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.controllers.LicenseRequest;
 import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.model.LicenseKey;
 import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.repos.LicenseKeyRepository;
 import lombok.AllArgsConstructor;
@@ -24,18 +26,27 @@ public class LicenseValidationService {
         } catch (Exception e) {
             return e.getMessage();
         }
-        return "DB is cleared";
+        return "DB had been cleared";
     }
 
-    public void addLicenseKey(LicenseKey license) {
-        if (licenseRepository.findByLicenseKey(license.getLicenseKey()).isPresent()) {
-            throw new RuntimeException("Key already exist");
+    public LicenseKeyAddingResponse addLicenseKey(LicenseRequest license) {
+        if (licenseRepository.findByLicenseKey(license.getKey()).isPresent()) {
+            return LicenseKeyAddingResponse.builder()
+                    .isAdded(false)
+                    .message("Key already exist")
+                    .build();
         }
 
-        license.setLicenseKey(license.getLicenseKey());
-        license.setActivated(false);
-        license.setActive(true);
-        license.setExpDate(LocalDate.now().plusDays(2));
-        licenseRepository.save(license);
+        LicenseKey licenseKey = new LicenseKey();
+
+        licenseKey.setLicenseKey(license.getKey());
+        licenseKey.setActivated(false);
+        licenseKey.setActive(true);
+        licenseKey.setExpDate(LocalDate.now().plusDays(2));
+        licenseRepository.save(licenseKey);
+        return LicenseKeyAddingResponse.builder()
+                .isAdded(true)
+                .message("License key added successfully.")
+                .build();
     }
 }
