@@ -1,4 +1,4 @@
-package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.common;
+package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
