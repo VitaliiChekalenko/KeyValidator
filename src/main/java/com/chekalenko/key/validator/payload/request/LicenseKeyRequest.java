@@ -1,4 +1,4 @@
-package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.payload.request;
+package com.chekalenko.key.validator.payload.request;
 
 import lombok.Data;
 

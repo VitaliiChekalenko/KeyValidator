@@ -1,4 +1,4 @@
-package com.chekalenko.ugreen.key.validator.UGreenKeyValditor;
+package com.chekalenko.key.validator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
