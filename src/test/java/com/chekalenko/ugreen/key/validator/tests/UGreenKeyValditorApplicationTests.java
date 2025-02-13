@@ -4,7 +4,7 @@ import com.chekalenko.key.validator.UGreenKeyValditorApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = UGreenKeyValditorApplication.class)
+@SpringBootTest()
 class UGreenKeyValditorApplicationTests {
 
 	@Test
