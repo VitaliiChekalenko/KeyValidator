@@ -1,4 +1,4 @@
-package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.model;
+package com.chekalenko.key.validator.data.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class LicenseKey {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String licenseKey;
+    private String license;
 
     @Column(nullable = false)
     private boolean active;
@@ -25,5 +25,5 @@ public class LicenseKey {
     private boolean isActivated;
 
     @Column(nullable = false)
-    private LocalDate expDate;
+    private LocalDate expireDate;
 }

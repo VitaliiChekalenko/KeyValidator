@@ -1,12 +1,11 @@
-package com.chekalenko.ugreen.key.validator.UGreenKeyValditor.controllers;
+package com.chekalenko.key.validator.controllers;
 
 
-import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.payload.response.LicenseKeyAddingResponse;
-import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.payload.response.LicenseKeyValidationResponse;
-import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.payload.response.SuccessResponse;
-import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.payload.request.LicenseKeyRequest;
-import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.payload.request.LicenseRequest;
-import com.chekalenko.ugreen.key.validator.UGreenKeyValditor.service.LicenseValidationService;
+import com.chekalenko.key.validator.payload.response.LicenseKeyAddingResponse;
+import com.chekalenko.key.validator.payload.response.LicenseKeyValidationResponse;
+import com.chekalenko.key.validator.payload.response.SuccessResponse;
+import com.chekalenko.key.validator.payload.request.LicenseRequest;
+import com.chekalenko.key.validator.service.LicenseValidationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,7 @@ public class LicenseController {
     @PostMapping("/validate")
     public ResponseEntity<SuccessResponse<LicenseKeyValidationResponse>> validateLicense(@RequestBody LicenseRequest licenseRequest) {
         return ResponseEntity.ok(new SuccessResponse<>(
-            licenseValidationService.validateLicenseKey(licenseRequest.getLicenseKey().toString())));
+            licenseValidationService.validateLicenseKey(licenseRequest.getLicenseKey())));
 
     }
 
