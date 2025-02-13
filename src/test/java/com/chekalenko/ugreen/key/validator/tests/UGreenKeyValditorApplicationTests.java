@@ -7,8 +7,8 @@ import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest(classes = UGreenKeyValditorApplication.class)
 @TestPropertySource(properties = {
-		"spring.datasource.username=${DB_USERNAME}",
-		"spring.datasource.password=${DB_PASSWORD}"
+		"spring.datasource.username=${secrets.DB_USERNAME}",
+		"spring.datasource.password=${secrets.DB_PASSWORD}"
 })
 class UGreenKeyValditorApplicationTests {
 
