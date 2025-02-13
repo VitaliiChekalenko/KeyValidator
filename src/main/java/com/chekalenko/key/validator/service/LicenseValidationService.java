@@ -21,7 +21,8 @@ public class LicenseValidationService {
     }
 
     private LicenseKeyValidationResponse getLicenseKeyValidationResponse(boolean isValid) {
-        return isValid ? LicenseKeyValidationResponse.builder().validated(true).message("License key is valid.").build()
+        return isValid ? LicenseKeyValidationResponse.builder().validated(true)
+                .message("License key is valid.").build()
             : LicenseKeyValidationResponse.builder().validated(false).message("Invalid license key.").build();
     }
 
