@@ -1,4 +1,5 @@
 USE `keyvalidation-db`;
+
 CREATE TABLE IF NOT EXISTS license_keys
 (
     id           BIGINT AUTO_INCREMENT PRIMARY KEY,
